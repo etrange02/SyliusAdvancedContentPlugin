@@ -7,16 +7,10 @@ use Sherlockode\AdvancedContentBundle\Manager\ConfigurationManager;
 use Sherlockode\AdvancedContentBundle\Model\VersionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdminVersionListener
 {
-    /**
-     * @var Session
-     */
-    private $session;
-
     /**
      * @var TranslatorInterface
      */
@@ -38,20 +32,17 @@ class AdminVersionListener
     private $em;
 
     /**
-     * @param Session                $session
      * @param TranslatorInterface    $translator
      * @param ConfigurationManager   $configurationManager
      * @param RequestStack           $requestStack
      * @param EntityManagerInterface $em
      */
     public function __construct(
-        Session $session,
         TranslatorInterface $translator,
         ConfigurationManager $configurationManager,
         RequestStack $requestStack,
         EntityManagerInterface $em
     ) {
-        $this->session = $session;
         $this->translator = $translator;
         $this->configurationManager = $configurationManager;
         $this->requestStack = $requestStack;
@@ -95,7 +86,7 @@ class AdminVersionListener
             \IntlDateFormatter::MEDIUM
         );
 
-        $this->session->getFlashBag()->add('info', $this->translator->trans('sherlockode_sylius_acb.form.version_edit', [
+        $this->requestStack->getSession()->getFlashBag()->add('info', $this->translator->trans('sherlockode_sylius_acb.form.version_edit', [
             '%version%' => $version->getId(),
             '%date%' => $formatter->format($version->getCreatedAt()),
         ]));
