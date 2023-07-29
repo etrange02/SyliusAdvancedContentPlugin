@@ -13,14 +13,17 @@
 
 ----
 
-* [Overview](#overview)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [Usage](#usage)
-* [Demo](#demo-sylius-shop)
-* [Additional resources for developers](#additional-resources-for-developers)
-* [License](#license)
-* [Contact](#contact)
+- [Sylius AdvancedContent plugin](#sylius-advancedcontent-plugin)
+  - [Table of Content](#table-of-content)
+- [Overview](#overview)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [Customizing page preview](#customizing-page-preview)
+- [Demo Sylius Shop](#demo-sylius-shop)
+- [Additional resources for developers](#additional-resources-for-developers)
+- [License](#license)
+- [Contact](#contact)
 
 
 # Overview
@@ -107,6 +110,12 @@ Encore.addLoader({
         }
     }
 });
+```
+
+Create migration for your database with:
+
+```bash
+$ php bin/console make:migration
 ```
 
 # Usage
