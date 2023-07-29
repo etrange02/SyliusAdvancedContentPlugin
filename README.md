@@ -115,7 +115,13 @@ Encore.addLoader({
 Create migration for your database with:
 
 ```bash
-$ php bin/console make:migration
+php bin/console make:migration
+```
+
+Publish the assets to finish the installation
+
+```bash
+php bin/console assets:install public
 ```
 
 # Usage
