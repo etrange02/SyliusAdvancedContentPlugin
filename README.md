@@ -185,7 +185,7 @@ class ViewHandler implements ViewHandlerInterface
 # Access to custom page
 
 ``` html
-path('sherlockode_advanced_content_shop', {'pageIdentifier': slugOfMyCustomPage})
+url('sherlockode_sylius_acb_shop_page_view', {'pageIdentifier': slugOfMyCustomPage})
 ```
 
 # Demo Sylius Shop

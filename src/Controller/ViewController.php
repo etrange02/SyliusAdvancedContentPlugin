@@ -55,30 +55,17 @@ class ViewController extends AbstractController
         Request $request,
         string $pageIdentifier
     ): Response {
-        $channelCode = $request->query->get('_channel_code');
-        $localeCode = $request->query->get('_locale');
 
-        $scope = $this->channelLocaleScopeHandler->getScopeFromData([
-            'channel' => $channelCode,
-            'locale' => $localeCode,
-        ]);
+        $scope = $this->channelLocaleScopeHandler->getCurrentScope();
 
         if (!$scope) {
-            throw new NotFoundHttpException(sprintf(
-                'Scope for channel "%s" and locale "%s" does not exists',
-                $channelCode,
-                $localeCode
-            ));
+            throw new NotFoundHttpException('Scope for current channel does not exists');
         }
 
         $page = $this->pageRepository->findOneByPageIdentifier($pageIdentifier, $scope);
 
         if (!$page) {
-            throw new NotFoundHttpException(sprintf(
-                'Page with scope for channel "%s" and locale "%s" does not exists',
-                $channelCode,
-                $localeCode
-            ));
+            throw new NotFoundHttpException('Page with scope for current channel and scope does not exists');
         }
 
         $template = $this->viewHandler->getViewTemplate($page, $scope);
