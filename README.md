@@ -20,6 +20,7 @@
 - [Configuration](#configuration)
 - [Usage](#usage)
   - [Customizing page preview](#customizing-page-preview)
+- [Access to custom page](#access-to-custom-page)
 - [Demo Sylius Shop](#demo-sylius-shop)
 - [Additional resources for developers](#additional-resources-for-developers)
 - [License](#license)
@@ -70,6 +71,10 @@ sherlockode_advanced_content_bundle:
 sherlockode_advanced_content:
     resource: "@SherlockodeSyliusAdvancedContentPlugin/Resources/config/admin_routing.yaml"
     prefix: '/%sylius_admin.path_name%/acb'
+
+sherlockode_advanced_content_shop:
+    resource: "@SherlockodeSyliusAdvancedContentPlugin/Resources/config/shop_routing.yaml"
+    prefix: '/{_locale}/acb'
 ```
 
 Regarding the assets, the same setup as for the standalone AdvancedContentBundle should be done.
@@ -175,6 +180,12 @@ class ViewHandler implements ViewHandlerInterface
         return '@SyliusShop/Acb/page.html.twig';
     }
 }
+```
+
+# Access to custom page
+
+``` html
+path('sherlockode_advanced_content_shop', {'pageIdentifier': slugOfMyCustomPage})
 ```
 
 # Demo Sylius Shop

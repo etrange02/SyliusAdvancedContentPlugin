@@ -1,0 +1,4 @@
+sherlockode_sylius_acb_shop_page_view:
+    path: "/{pageIdentifier}"
+    defaults:
+        _controller: sherlockode_sylius_acb.controller.view::viewAction

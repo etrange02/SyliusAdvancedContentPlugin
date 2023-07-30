@@ -41,6 +41,17 @@ services:
             - [ 'setContainer', [ '@Psr\Container\ContainerInterface' ] ]
         tags:
             - { name: container.service_subscriber }
+    sherlockode_sylius_acb.controller.view:
+        class: Sherlockode\SyliusAdvancedContentPlugin\Controller\ViewController
+        public: true
+        arguments:
+            - '@sherlockode_advanced_content.scope_handler'
+            - '@sherlockode_sylius_acb.repository.page'
+            - '@sherlockode_sylius_acb.view.view_handler'
+        calls:
+            - [ 'setContainer', [ '@Psr\Container\ContainerInterface' ] ]
+        tags:
+            - { name: container.service_subscriber }
     sherlockode_sylius_acb.controller.scope:
         class: Sherlockode\SyliusAdvancedContentPlugin\Controller\ScopeController
         public: true
@@ -92,3 +103,7 @@ services:
         class: Sherlockode\SyliusAdvancedContentPlugin\Preview\ViewHandler
     Sherlockode\SyliusAdvancedContentPlugin\Preview\ViewHandlerInterface:
         alias: sherlockode_sylius_acb.preview.view_handler
+    sherlockode_sylius_acb.view.view_handler:
+        class: Sherlockode\SyliusAdvancedContentPlugin\View\ViewHandler
+    Sherlockode\SyliusAdvancedContentPlugin\View\ViewHandlerInterface:
+        alias: sherlockode_sylius_acb.view.view_handler
